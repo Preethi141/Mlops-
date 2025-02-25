@@ -1,0 +1,5 @@
+outs:
+- md5: 928f36fd0beb3934ee5545bffe5df0be
+  size: 25
+  hash: md5
+  path: drift_alert.log

@@ -1,0 +1,33 @@
+stages:
+  preprocess:
+    cmd: python process.py
+    deps:
+      - process.py
+    outs:
+      - train.csv
+      - test.csv
+
+  train:
+    cmd: python train.py
+    deps:
+      - train.csv
+      - test.csv
+    outs:
+      - random_forest.pkl
+      - logistic_regression.pkl
+
+  evaluate:
+    cmd: python evaluate.py
+    deps:
+      - random_forest.pkl
+      - logistic_regression.pkl
+    metrics:
+      - metrics.json
+
+  driftdetection:
+    cmd: python driftdetection.py
+    deps:
+      - train.csv
+      - test.csv
+    outs:
+      - drift_alert.log
